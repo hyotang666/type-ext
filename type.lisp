@@ -3,11 +3,14 @@
     ;;;; main api
     #:prototype
     #:define-simple-type
+    #:checktype
     ;;;; type
     #:maybe
     #:generalized-boolean
     ;;;; useful helper
     #:nested-cons-type-specifier
+    ;;;; condition
+    #:invalid-condition-type
     ))
 (in-package :type-ext)
 
@@ -90,3 +93,21 @@
 
 (deftype generalized-boolean()
   T)
+
+(define-condition invalid-condition-type(program-error simple-type-error)())
+
+(defmacro checktype(form type condition format-control &rest format-argument*)
+  (let((datum(gensym "DATUM")))
+    (assert (subtypep condition 'simple-type-error)()
+	    'invalid-condition-type
+	    :format-control "~S is not subtype of simple-type-error."
+	    :format-arguments `(,condition)
+	    :expected-type 'simple-type-error
+	    :datum condition)
+    `(LET((,datum ,form))
+       (ASSERT (TYPEP ,datum ',type)()
+	       ',condition
+	       :FORMAT-CONTROL ,format-control
+	       :FORMAT-ARGUMENTS (LIST ,@format-argument*)
+	       :EXPECTED-TYPE ',type
+	       :DATUM ,datum))))

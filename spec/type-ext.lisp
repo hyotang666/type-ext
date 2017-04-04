@@ -235,3 +235,46 @@
 
 ;;;; Exceptional-Situations:
 
+(requirements-about CHECKTYPE)
+
+;;;; Description:
+; Extended version of `CL:CHECK-TYPE`
+; `CL:CHECK-TYPE` cound not signal user customized condition.
+; In such case, we need to use `CL:ASSERT` instead,
+; but `CL:ASSERT` syntax is too long.
+#?(let((var 0))
+    (checktype var integer simple-type-error "~S is not integer" var))
+:equivalents
+(let((var 0))
+  (check-type var integer))
+
+#+syntax
+(CHECKTYPE form type condition format-control &rest format-argument*) ; => result
+
+;;;; Arguments and Values:
+
+; form := Form which generate datum (i.e. T). Evaluated.
+
+; type := Type specifier, not evaluated.
+
+; condition := Condition name, not evaluated.
+; condition name must subtype of simple-type-error, otherwise error.
+#?(checktype 0 integer program-error "Invalid syntax")
+:signals error
+
+; format-control := Form which generates format control string, evaluted.
+
+; format-argument := Arguments form format controls.
+
+; result := NIL when successed, otherwise signal specified condition.
+
+;;;; Affected By:
+; none
+
+;;;; Side-Effects:
+; May signaling condition.
+
+;;;; Notes:
+
+;;;; Exceptional-Situations:
+
