@@ -1,6 +1,6 @@
 (defpackage :type-ext.spec (:use :cl :jingoh :type-ext))
 (in-package :type-ext.spec)
-(setup :type-ext.spec)
+(setup :type-ext)
 
 (requirements-about PROTOTYPE)
 
