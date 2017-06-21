@@ -1,14 +1,15 @@
-# TYPE-EXT 0.0.0 - What is this?
-
-* Current lisp world
+# TYPE-EXT 0.0.0
+## What is this?
+Tiny extensions about types.
+### Current lisp world
 Common Lisp has strong DEFTYPE features.
 
-* Issues
+### Issues
 Sometimes, we need to define type which is list and have same elements.
 But ANSI-CL's type specifier '(AND ...) is not specified that be evaluated from left to right and short cut is occur when meet unsatisfied thing.
 So we care to such implementation dependent manner.
 
-* Proposal
+### Proposal
 Define-simple-type provides such solver.
 
 ## Usage
