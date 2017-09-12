@@ -33,7 +33,7 @@ Define-simple-type provides such solver.
 ## From developer
 
 * Product's goal
-* License
+* License - MIT
 * Developped with - 
 * Tested with - 
 
