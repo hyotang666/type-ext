@@ -8,6 +8,6 @@
   :author "Shinichi Sato"
   :license "MIT"
   :components((:file "type")))
-;; Perform method below is added by JINGOH.GENERATOR.
-(defmethod perform ((o test-op) (c (eql (find-system "type-ext"))))
- (test-system :type-ext.test))
+
+(defmethod component-depends-on ((o test-op) (c (eql (find-system "type-ext"))))
+  (append (call-next-method)'((test-op "type-ext.test"))))
