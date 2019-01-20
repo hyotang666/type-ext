@@ -34,6 +34,5 @@ Define-simple-type provides such solver.
 
 * Product's goal
 * License - MIT
-* Developped with - 
-* Tested with - 
+* Tested with - SBCL/1.4.15
 
